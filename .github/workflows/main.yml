@@ -1,12 +1,14 @@
 name: Release CI
-on: push
+on:
+  push:
+  workflow_dispatch:
 jobs:
 
   x64_build:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
@@ -15,7 +17,7 @@ jobs:
       run: msbuild -p:configuration=release -p:platform=x64 -p:platformToolset=v143
       
     - name: Get current time
-      uses: josStorer/get-current-time@v2.0.2
+      uses: josStorer/get-current-time@v2
       id: current-time
       with:
         format: YYYYMMDD_HHmmss
@@ -39,7 +41,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
@@ -48,7 +50,7 @@ jobs:
       run: msbuild -p:configuration=release -p:platform=x86 -p:platformToolset=v143
       
     - name: Get current time
-      uses: josStorer/get-current-time@v2.0.2
+      uses: josStorer/get-current-time@v2
       id: current-time
       with:
         format: YYYYMMDD_HHmmss
@@ -72,7 +74,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
@@ -81,7 +83,7 @@ jobs:
       run: msbuild -p:configuration=release -p:platform=ARM64EC -p:platformToolset=v143
       
     - name: Get current time
-      uses: josStorer/get-current-time@v2.0.2
+      uses: josStorer/get-current-time@v2
       id: current-time
       with:
         format: YYYYMMDD_HHmmss
